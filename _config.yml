@@ -12,6 +12,8 @@ collections:
   posts:
     output          : true
 
+theme: jekyll-theme-midnight
+
 # Handling Reading
 safe                : false
 include             : [".htaccess"]
