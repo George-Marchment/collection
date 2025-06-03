@@ -1,6 +1,6 @@
 # George's CD Collection
 
-This is George's CD collection. It has last been update on the 03/06/2025 
+This is George's CD collection. It has last been updated on the 03/06/2025 
 
 | Artist | Album | Year |
 |--------|-------|------|
