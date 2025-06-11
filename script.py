@@ -5,7 +5,7 @@ from datetime import datetime
 def read_csv_file(file_path):
     data = defaultdict(list)
     with open(file_path, mode='r', encoding='utf-8') as file:
-        reader = csv.DictReader(file)
+        reader = csv.DictReader(file, delimiter=";")
         for row in reader:
             data['Artist'].append(row['Artist'])
             data['Album'].append(row['Album'])
@@ -15,7 +15,7 @@ def read_csv_file(file_path):
 def sort_data_by_artist(data):
     # Combine the data into a list of tuples and sort by Artist
     combined_data = list(zip(data['Artist'], data['Album'], data['Year']))
-    combined_data.sort(key=lambda x: x[0])
+    combined_data.sort(key=lambda x: (x[0], x[2]))
     # Unzip the sorted data back into separate lists
     data['Artist'], data['Album'], data['Year'] = zip(*combined_data)
     return data
@@ -25,7 +25,7 @@ def write_markdown_table(data, output_file):
 
     with open(output_file, mode='w', encoding='utf-8') as file:
         file.write("# George's CD Collection\n\n")
-        file.write(f"This is George's CD collection. It has last been updated on the {datetime.today().strftime('%d/%m/%Y')} \n\n")
+        file.write(f"This is George's CD collection. There are {len(data)} albums. It has last been updated on the {datetime.today().strftime('%d/%m/%Y')} \n\n")
         file.write("| Artist | Album | Year |\n")
         file.write("|--------|-------|------|\n")
         for artist, album, year in zip(data['Artist'], data['Album'], data['Year']):
