@@ -25,7 +25,7 @@ def write_markdown_table(data, output_file):
 
     with open(output_file, mode='w', encoding='utf-8') as file:
         file.write("# George's CD Collection\n\n")
-        file.write(f"This is George's CD collection. There are {len(data)} albums. It has last been updated on the {datetime.today().strftime('%d/%m/%Y')} \n\n")
+        file.write(f"This is George's CD collection. There are {len(data['Artist'])} albums. It has last been updated on the {datetime.today().strftime('%d/%m/%Y')} \n\n")
         file.write("| Artist | Album | Year |\n")
         file.write("|--------|-------|------|\n")
         for artist, album, year in zip(data['Artist'], data['Album'], data['Year']):
