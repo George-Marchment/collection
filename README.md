@@ -1,6 +1,6 @@
 # George's CD Collection
 
-This is George's CD collection. There are 3 albums. It has last been updated on the 11/06/2025 
+This is George's CD collection. There are 60 albums. It has last been updated on the 11/06/2025 
 
 | Artist | Album | Year |
 |--------|-------|------|
