@@ -1,6 +1,6 @@
 # George's CD Collection
 
-This is George's CD collection. There are 90 albums. It has last been updated on the 11/04/2026 
+This is George's CD collection. There are 98 albums. It has last been updated on the 24/07/2026 
 
 | Artist | Album | Year |
 |--------|-------|------|
@@ -30,11 +30,13 @@ This is George's CD collection. There are 90 albums. It has last been updated on
 | Dave | We're All Alone in This Together | 2021 |
 | Dave | The Boy Who Played the Harp | 2025 |
 | Dexys Midnight Runners | Searching for the Young Soul Rebels | 1980 |
+| Dijon | Absolutely | 2021 |
 | Dirty Danscing | Ultimate Dirty Danscing | 1987 |
 | Djo | Decide | 2022 |
 | Djo | The Crux | 2025 |
 | Eagles | The Very Best Of | 2003 |
 | Ed Sheeran | + | 2011 |
+| Ella Fitzgerald and Louis Armstrong | Ella and Louis | 1956 |
 | Elvis Costello | My Aim Is True | 1977 |
 | Fontaines D.C. | Romance | 2024 |
 | Foster the People | Torches | 2011 |
@@ -47,6 +49,7 @@ This is George's CD collection. There are 90 albums. It has last been updated on
 | Jack White | No Name | 2024 |
 | Kanye West | My Beautiful Dark Twisted Fantasy | 2010 |
 | Kanye West | Ye | 2018 |
+| Kendrick Lamar | Good Kid, M.A.A.D City | 2012 |
 | Kendrick Lamar | To Pimp a Butterfly | 2015 |
 | King Crimson | In the Court of the Crimson King | 1969 |
 | Little Simz | Lotus | 2025 |
@@ -54,6 +57,7 @@ This is George's CD collection. There are 90 albums. It has last been updated on
 | Love | Forever Changes | 1967 |
 | MGMT | Oracular Spectacular | 2007 |
 | Mac DeMarco | Salad Days | 2014 |
+| Mac Miller | K.I.D.S. | 2010 |
 | Mac Miller | Circles | 2020 |
 | Mac Miller | Balloonerism | 2025 |
 | Marvin Gaye | What's Going On | 1971 |
@@ -63,6 +67,7 @@ This is George's CD collection. There are 90 albums. It has last been updated on
 | N.W.A | Straight Outta Compton | 1988 |
 | Nourished By Time | The Passionate Ones | 2025 |
 | Olivia Rodrigo | Sour | 2021 |
+| Olivia Rodrigo | You Seem Pretty Sad for a Girl So in Love | 2026 |
 | Paul Simon | Graceland | 1986 |
 | Phoebe Bridgers | Punisher | 2020 |
 | Shrek 2 | Shrek 2 | 2004 |
@@ -72,6 +77,7 @@ This is George's CD collection. There are 90 albums. It has last been updated on
 | Tame Impala | Lonerism | 2012 |
 | Tame Impala | Currents | 2015 |
 | The Beatles | Please Please Me | 1963 |
+| The Beatles | With the Beatles | 1963 |
 | The Beatles | Sgt. Pepper's Lonely Hearts Club Band | 1967 |
 | The Beatles | Magical Mystery Tour | 1967 |
 | The Beatles | Yellow Submarine | 1969 |
@@ -87,10 +93,12 @@ This is George's CD collection. There are 90 albums. It has last been updated on
 | The Smiths | Hatful of Hollow | 1984 |
 | The Smiths | The Queen Is Dead | 1986 |
 | The Strokes | Is This It | 2001 |
+| The Strokes | The New Abnormal | 2020 |
 | The Weeknd | House of Balloons | 2011 |
 | Tyler, The Creator | Wolf | 2013 |
 | Tyler, The Creator | Flower Boy | 2017 |
 | Tyler, The Creator | Igor | 2019 |
 | Tyler, The Creator | Call Me If You Get Lost | 2021 |
+| Vince Staples | Cry Baby | 2026 |
 | Violent Femmes | Violent Femmes | 1983 |
 | Wet Leg | Moisturizer | 2025 |
