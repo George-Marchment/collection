@@ -1,6 +1,6 @@
 # George's CD Collection
 
-This is George's CD collection. There are 98 albums. It has last been updated on the 24/07/2026 
+This is George's CD collection. There are 107 albums. It has last been updated on the 28/08/2026 
 
 | Artist | Album | Year |
 |--------|-------|------|
@@ -23,6 +23,8 @@ This is George's CD collection. There are 98 albums. It has last been updated on
 | Bob Dylan | The Freewheelin' Bob Dylan | 1963 |
 | Bob Dylan | Highway 61 Revisited | 1965 |
 | Buzzcocks | Singles Going Steady | 1979 |
+| Charli XCX | How I'm Feeling Now | 2020 |
+| Charli XCX | Brat | 2024 |
 | Clairo | Immunity | 2019 |
 | Cocteau Twins | Heaven or Las Vegas | 1990 |
 | Cream | Disraeli Gears | 1967 |
@@ -67,6 +69,7 @@ This is George's CD collection. There are 98 albums. It has last been updated on
 | N.W.A | Straight Outta Compton | 1988 |
 | Nourished By Time | The Passionate Ones | 2025 |
 | Olivia Rodrigo | Sour | 2021 |
+| Olivia Rodrigo | Guts | 2023 |
 | Olivia Rodrigo | You Seem Pretty Sad for a Girl So in Love | 2026 |
 | Paul Simon | Graceland | 1986 |
 | Phoebe Bridgers | Punisher | 2020 |
@@ -76,12 +79,17 @@ This is George's CD collection. There are 98 albums. It has last been updated on
 | Slowthai | Ugly | 2023 |
 | Tame Impala | Lonerism | 2012 |
 | Tame Impala | Currents | 2015 |
+| The Beach Boys | Pet Sounds | 1966 |
 | The Beatles | Please Please Me | 1963 |
 | The Beatles | With the Beatles | 1963 |
 | The Beatles | Sgt. Pepper's Lonely Hearts Club Band | 1967 |
 | The Beatles | Magical Mystery Tour | 1967 |
 | The Beatles | Yellow Submarine | 1969 |
+| The Beatles | Abbey Road | 1969 |
 | The Beatles | Let It Be | 1970 |
+| The Cure | Pornography | 1982 |
+| The Cure | Kiss Me, Kiss Me, Kiss Me | 1987 |
+| The Cure | Wish | 1992 |
 | The Human League | Dare | 1981 |
 | The Internet | Hive Mind | 2018 |
 | The Kooks | Inside In/Inside Out | 2006 |
@@ -102,3 +110,4 @@ This is George's CD collection. There are 98 albums. It has last been updated on
 | Vince Staples | Cry Baby | 2026 |
 | Violent Femmes | Violent Femmes | 1983 |
 | Wet Leg | Moisturizer | 2025 |
+| Wolf Alice | The Clearing | 2025 |
