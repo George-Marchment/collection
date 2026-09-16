@@ -1,6 +1,6 @@
 # George's CD Collection
 
-This is George's CD collection. There are 107 albums. It has last been updated on the 28/08/2026 
+This is George's CD collection. There are 108 albums. It has last been updated on the 16/09/2026 
 
 | Artist | Album | Year |
 |--------|-------|------|
@@ -77,6 +77,7 @@ This is George's CD collection. There are 107 albums. It has last been updated o
 | Slowthai | Nothing Great About Britain | 2019 |
 | Slowthai | Tyron | 2021 |
 | Slowthai | Ugly | 2023 |
+| Steve Lacy |  Oh yeah? | 2026 |
 | Tame Impala | Lonerism | 2012 |
 | Tame Impala | Currents | 2015 |
 | The Beach Boys | Pet Sounds | 1966 |
