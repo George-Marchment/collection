@@ -12,4 +12,5 @@ The website is built automatically from [`collection.csv`](collection.csv) each 
 The cover is found automatically (iTunes, then MusicBrainz). If the wrong cover shows up, or none at all,
 put the right image in `covers/` using the file name the build log shows, e.g. `covers/blur-parklife.jpg`.
 
+
 To preview locally: `python script.py`, then open `_site/index.html`.
