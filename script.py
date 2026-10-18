@@ -2,7 +2,7 @@
 
 Covers are looked up automatically (iTunes, then MusicBrainz / Cover Art Archive)
 and stored as covers/<slug>.jpg. To fix a wrong cover, replace that file by hand.
-Genres and Apple Music links are stored in covers/metadata.json, which can also be
+Genres and Wikipedia links are stored in covers/metadata.json, which can also be
 edited by hand.
 """
 import argparse
@@ -82,7 +82,8 @@ def slugify(entry):
 
 def similarity(a, b):
     if not normalise(a) or not normalise(b):  # titles made only of symbols, e.g. "+"
-        return 1.0 if a.strip().lower() == b.strip().lower() else 0.0
+        a, b = (re.split(r" ?[(\[]", text)[0].strip().lower() for text in (a, b))
+        return 1.0 if a == b else 0.0
     if normalise(a) == normalise(b):
         return 1.0
     return max(SequenceMatcher(None, normalise(a), normalise(b)).ratio(),
@@ -268,27 +269,80 @@ def load_metadata(*folders):
     return metadata
 
 
+def wikipedia_pages(params):
+    query = urllib.parse.urlencode({"action": "query", "format": "json", "redirects": 1,
+                                    "prop": "description|info", "inprop": "url", **params})
+    data = fetch(f"https://en.wikipedia.org/w/api.php?{query}")
+    pages = json.loads(data).get("query", {}).get("pages", {}) if data else {}
+    return [page for page in pages.values() if "missing" not in page]
+
+
+def is_album_page(entry, page):
+    description = page.get("description", "").lower()
+    kinds = ["album", "mixtape", "compilation"] + (["soundtrack"] if is_soundtrack(entry) else [])
+    if not any(kind in description for kind in kinds) and not re.search(r"\b[el]p\b", description):
+        return False
+    if similarity(entry["album"], page["title"]) < 0.85:
+        return False
+    artist = normalise(entry["artist"]).removeprefix("the ")
+    return artist in normalise(description) or is_soundtrack(entry) or "various artists" in description
+
+
+def find_wikipedia_page(entry):
+    """URL of the album's English Wikipedia article, or None."""
+    album, artist = entry["album"], entry["artist"]
+    # Try the usual article titles first, then fall back to a search
+    titles = [f"{album} ({artist} album)", f"{album} (album)", album]
+    if is_soundtrack(entry):
+        titles.insert(0, f"{album} (soundtrack)")
+    pages = {page["title"]: page for page in wikipedia_pages({"titles": "|".join(titles)})}
+    for page_title in titles:
+        page = pages.get(page_title) or next(
+            (p for p in pages.values() if normalise(p["title"]) == normalise(page_title)), None)
+        if page and is_album_page(entry, page):
+            return page["fullurl"]
+    # Any of the direct pages (e.g. reached via a redirect) that look right
+    for page in pages.values():
+        if is_album_page(entry, page):
+            return page["fullurl"]
+
+    results = wikipedia_pages({"generator": "search", "gsrlimit": 8,
+                               "gsrsearch": f"{album} {artist} album"})
+    for page in sorted(results, key=lambda page: page.get("index", 99)):
+        if is_album_page(entry, page):
+            return page["fullurl"]
+    return None
+
+
+def wikipedia_search_url(entry):
+    return "https://en.wikipedia.org/w/index.php?" + urllib.parse.urlencode(
+        {"search": f"{entry['album']} {entry['artist']} album"})
+
+
+def lookup_genre(entry):
+    genre = (itunes_match(entry) or {}).get("primaryGenreName")
+    return genre or find_genre_musicbrainz(entry)
+
+
 def get_metadata(entry, metadata, fetch_dir):
-    """Return {"genre": ..., "link": ...}, looking it up on iTunes if needed."""
+    """Return {"genre": ..., "wikipedia": ...}, looking up whatever is missing."""
     slug = slugify(entry)
-    if slug in metadata:
-        return metadata[slug]
+    info = dict(metadata.get(slug, {}))
     label = f"{entry['artist']} - {entry['album']}"
-    try:
-        result = itunes_match(entry) or {}
-    except Exception as error:
-        warn(f"genre lookup failed for {label}: {error}")
-        return {"genre": None, "link": None}  # not saved, so it is retried next time
-    genre = result.get("primaryGenreName")
-    if not genre:
+    changed = False
+    for key, lookup in (("genre", lookup_genre), ("wikipedia", find_wikipedia_page)):
+        if key in info:
+            continue
         try:
-            genre = find_genre_musicbrainz(entry)
-        except Exception as error:
-            warn(f"genre lookup failed for {label}: {error}")
-            return {"genre": None, "link": result.get("collectionViewUrl")}
-    info = {"genre": genre, "link": result.get("collectionViewUrl")}
-    if not genre:
-        warn(f"no genre found for {label} (set it in covers/{METADATA_FILE})")
+            info[key] = lookup(entry)
+        except Exception as error:  # not saved, so it is retried next time
+            warn(f"{key} lookup failed for {label}: {error}")
+            continue
+        changed = True
+        if not info[key]:
+            warn(f"no {key} found for {label} (set it in covers/{METADATA_FILE})")
+    if not changed:
+        return info
 
     metadata[slug] = info
     saved = load_metadata(fetch_dir)
@@ -309,14 +363,9 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 <title>George's CD Collection</title>
 <style>
   :root {
-    --bg: #f6f5f2; --card: #ffffff; --text: #1d1d1f; --muted: #6e6e73;
-    --border: #e2e0db; --accent: #b4442f; --bar: #c8553d; --track: #eeece7;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #141414; --card: #1f1f1f; --text: #f2f2f2; --muted: #a1a1a6;
-      --border: #333333; --accent: #e8735c; --bar: #d9664e; --track: #2a2a2a;
-    }
+    color-scheme: dark;
+    --bg: #141414; --card: #1f1f1f; --text: #f2f2f2; --muted: #a1a1a6;
+    --border: #333333; --accent: #e8735c; --bar: #d9664e; --track: #2a2a2a;
   }
   * { box-sizing: border-box; }
   body {
@@ -611,9 +660,9 @@ def write_site(albums, covers, output_dir):
             image = f'<img src="covers/{cover.name}" alt="{alt}" loading="lazy">'
         else:
             image = f'<div class="placeholder">{esc(entry["album"])}</div>'
-        if entry.get("link"):
-            image = (f'<a href="{esc(entry["link"])}" target="_blank" rel="noopener" '
-                     f'title="Listen on Apple Music">{image}</a>')
+        wiki = entry["wikipedia"] or wikipedia_search_url(entry)
+        image = (f'<a href="{esc(wiki)}" target="_blank" rel="noopener" '
+                 f'title="Read about it on Wikipedia">{image}</a>')
         genre = entry["genre"]
         search = " ".join([entry["artist"], entry["album"], entry["year"], genre]).lower()
         cards.append(ALBUM_TEMPLATE.format(
@@ -676,7 +725,7 @@ def main():
             covers[slugify(entry)] = cover
         info = get_metadata(entry, metadata, args.fetch_dir)
         entry["genre"] = genre_group(info.get("genre"))
-        entry["link"] = info.get("link")
+        entry["wikipedia"] = info.get("wikipedia")
     write_site(albums, covers, args.output)
     print(f"Built {args.output / 'index.html'}: {len(albums)} albums, "
           f"{len(covers)} with covers")
