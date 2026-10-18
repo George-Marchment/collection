@@ -1,6 +1,6 @@
 # George's CD Collection
 
-This is George's CD collection. There are 108 albums. It has last been updated on the 16/09/2026 
+This is George's CD collection. There are 109 albums. It has last been updated on the 18/10/2026 
 
 | Artist | Album | Year |
 |--------|-------|------|
@@ -41,6 +41,7 @@ This is George's CD collection. There are 108 albums. It has last been updated o
 | Ella Fitzgerald and Louis Armstrong | Ella and Louis | 1956 |
 | Elvis Costello | My Aim Is True | 1977 |
 | Fontaines D.C. | Romance | 2024 |
+| Fontaines D.C. | Dopamine Chamber | 2026 |
 | Foster the People | Torches | 2011 |
 | Frank Ocean | Channel Orange | 2012 |
 | Frank Ocean | Blond | 2016 |
